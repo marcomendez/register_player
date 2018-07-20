@@ -71,7 +71,7 @@
     </Reference>
     <Reference Include="mysql.data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\programming\demoDigitalPersona - copia\demoDigitalPersona\bin\Debug\mysql.data.dll</HintPath>
+      <HintPath>bin\Release\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

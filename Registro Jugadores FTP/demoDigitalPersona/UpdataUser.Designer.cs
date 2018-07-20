@@ -134,9 +134,9 @@
             this.Controls.SetChildIndex(this.button3, 0);
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.txt_lastname, 0);
-            this.Controls.SetChildIndex(this.txt_nickname, 0);
+            this.Controls.SetChildIndex(this.txt_club, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.txt_height, 0);
+            this.Controls.SetChildIndex(this.txt_carnet, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.lalas44, 0);
             this.Controls.SetChildIndex(this.label_weight, 0);

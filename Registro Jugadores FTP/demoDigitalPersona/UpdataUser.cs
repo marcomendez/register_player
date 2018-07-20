@@ -27,7 +27,7 @@ namespace demoDigitalPersona
             Byte[] bytes = br.ReadBytes((Int32)fingerdata.Length);
             ClassConnectDataBase c = new ClassConnectDataBase();
 
-            string result = c.update(int.Parse(textBox3.Text), txt_name.Text, txt_lastname.Text, txt_nickname.Text, txt_height.Text, "",
+            string result = c.update(int.Parse(textBox3.Text), txt_name.Text, txt_lastname.Text, txt_club.Text,txt_carnet.Text +" "+combo_carnet.Text,txt_phono.Text,"", "",
                 "", "mierdaaa", txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1]);
             SetStatus("Correctly registered user");
             Message(result);
@@ -52,9 +52,9 @@ namespace demoDigitalPersona
                 textBox3.Text = search.id;
                 txt_name.Text = search.name;
                 txt_lastname.Text = search.lastname;
-                txt_nickname.Text = search.nickname;
+                txt_club.Text = search.nickname;
 
-                txt_height.Text = search.height;
+                txt_carnet.Text = search.height;
     
                 txt_position.Text = search.position;
                 txt_date.Text = search.birthday;

@@ -23,7 +23,7 @@ namespace demoDigitalPersona
         MySqlTransaction myTrans;
         public ClassConnectDataBase()
         {
-            string aux = "server=xxxx.com;database=xxx;uid=xxx;pwd=xxxx;";
+            string aux = "server=sidbol.com;database=sidbol_db;uid=sidbol;pwd=1G3!Nx}$!W]f;";
 
             myConnection = new MySqlConnection(aux);
         }
@@ -91,7 +91,7 @@ namespace demoDigitalPersona
         /// <param name="name"></param>
         /// <param name="finger"></param>
         /// <param name="photo"></param>
-        internal string update(int id, string name, string lastname, string nickname, string height, string weight, string skillful, string position, string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo)
+        internal string update(int id, string name, string lastname, string nickname,string ci, string phono, string height, string weight, string skillful, string position, string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace demoDigitalPersona
                
                 MySqlCommand cmd;
                 string cmdString = "UPDATE " + "players" +
-                    " SET name=@name,last_name=@lastname,nickname=@nickname,height=@height,weight=@weight,skillful_leg=@skillful " +
+                    " SET name=@name,last_name=@lastname,nickname=@nickname,ci=@ci,phono=@phono,height=@height,weight=@weight,skillful_leg=@skillful " +
                     ",position=@position,birthday=@birthday,image=@image,fingerOne=@fingerOne,fingerTwo=@fingerTwo " +
                     " WHERE id= @id";
 
@@ -108,6 +108,8 @@ namespace demoDigitalPersona
                 cmd.Parameters.Add("@name", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@lastname", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@nickname", MySqlDbType.VarChar, 40);
+                cmd.Parameters.Add("@ci", MySqlDbType.VarChar, 20);
+                cmd.Parameters.Add("@phono", MySqlDbType.VarChar, 30);
                 cmd.Parameters.Add("@height", MySqlDbType.VarChar, 10);
                 cmd.Parameters.Add("@weight", MySqlDbType.VarChar, 10);
                 cmd.Parameters.Add("@skillful", MySqlDbType.VarChar, 40);
@@ -120,6 +122,8 @@ namespace demoDigitalPersona
                 cmd.Parameters["@name"].Value = name;
                 cmd.Parameters["@lastname"].Value = lastname;
                 cmd.Parameters["@nickname"].Value = nickname;
+                cmd.Parameters["@ci"].Value = ci;
+                cmd.Parameters["@phono"].Value =phono;
                 cmd.Parameters["@height"].Value = height;
                 cmd.Parameters["@weight"].Value = weight;
                 cmd.Parameters["@skillful"].Value = skillful;
@@ -129,7 +133,7 @@ namespace demoDigitalPersona
                 cmd.Parameters["@fingerOne"].Value = fingerOne;
                 cmd.Parameters["@fingerTwo"].Value = fingerTwo;
                 cmd.ExecuteNonQuery();
-                ftp ftpClient = new ftp(@"ftp://sidbol.com", "xxxx", "xxxxx");
+                ftp ftpClient = new ftp(@"ftp://sidbol.com", "sidbol", "1G3!Nx}$!W]f");
 
                 /* Upload a File */
                 ftpClient.upload("public_html/afc/app/webroot/img/players/sm_" + patchphoto + ".jpg", Application.StartupPath + "\\Images\\sm_" + patchphoto + ".jpg");
@@ -161,18 +165,20 @@ namespace demoDigitalPersona
         /// <param name="fingerOne"></param>
         /// <param name="fingerTwo"></param>
         /// <returns></returns>
-        public string insert(string name, string lastname, string nickname, string height, string weight, string skillful, string position, string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo)
+        public string insert(string name, string lastname, string nickname,string ci, string phono, string height, string weight, string skillful, string position, string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo)
         {
             try
             {
                 beginTransaction();
                 
                 MySqlCommand cmd;
-                string cmdString = "INSERT INTO players(name,last_name,nickname,height,weight,skillful_leg,position,birthday,image,fingerOne,fingerTwo)values(@name,@lastname,@nickname,@height,@weight,@skillful,@position,@birthday,@image,@fingerOne,@fingerTwo)";
+                string cmdString = "INSERT INTO players(name,last_name,nickname,ci,phono,height,weight,skillful_leg,position,birthday,image,fingerOne,fingerTwo)values(@name,@lastname,@nickname,@ci,@phono,@height,@weight,@skillful,@position,@birthday,@image,@fingerOne,@fingerTwo)";
                 cmd = new MySqlCommand(cmdString, myConnection);
                 cmd.Parameters.Add("@name", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@lastname", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@nickname", MySqlDbType.VarChar, 40);
+                cmd.Parameters.Add("@ci", MySqlDbType.VarChar, 20);
+                cmd.Parameters.Add("@phono", MySqlDbType.VarChar, 30);
                 cmd.Parameters.Add("@height", MySqlDbType.VarChar, 10);
                 cmd.Parameters.Add("@weight", MySqlDbType.VarChar, 10);
                 cmd.Parameters.Add("@skillful", MySqlDbType.VarChar, 40);
@@ -184,6 +190,8 @@ namespace demoDigitalPersona
                 cmd.Parameters["@name"].Value = name;
                 cmd.Parameters["@lastname"].Value = lastname;
                 cmd.Parameters["@nickname"].Value = nickname;
+                cmd.Parameters["@ci"].Value = ci;
+                cmd.Parameters["@phono"].Value = phono;
                 cmd.Parameters["@height"].Value = height;
                 cmd.Parameters["@weight"].Value = weight;
                 cmd.Parameters["@skillful"].Value = skillful;
@@ -194,7 +202,7 @@ namespace demoDigitalPersona
                 cmd.Parameters["@fingerTwo"].Value = fingerTwo;
                 cmd.ExecuteNonQuery();
                 /* Create Object Instance */
-                ftp ftpClient = new ftp(@"ftp://sidbol.com", "xxx", "xxxxx");
+                ftp ftpClient = new ftp(@"ftp://sidbol.com", "sidbol", "1G3!Nx}$!W]f");
 
                 /* Upload a File */
                 ftpClient.upload("public_html/afc/app/webroot/img/players/sm_" + patchphoto +".jpg", Application.StartupPath + "\\Images\\sm_"+ patchphoto+".jpg");
@@ -204,7 +212,7 @@ namespace demoDigitalPersona
             catch (Exception e)
             {
                 myTrans.Rollback();
-                return e.Message + "*************** There is a error, please try again ********************";
+                return e.Message + "*************** Ha ocurrido un error , porfavor contacte con SIDBOL ********************";
 
             }
             finally
@@ -212,7 +220,7 @@ namespace demoDigitalPersona
                 myConnection.Close();
 
             }
-            return "*************** JUGAR REGISTRADO CORRECTAMENTE ********************";
+            return "*************** JUGADOR REGISTRADO CORRECTAMENTE ********************";
         }
  
 

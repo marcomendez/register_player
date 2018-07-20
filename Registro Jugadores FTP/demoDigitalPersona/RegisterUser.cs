@@ -24,19 +24,26 @@ namespace demoDigitalPersona
         private DPFP.Capture.Capture Capturer;
         protected DPFP.Processing.Enrollment Enroller;
         string bandera = "";
-       protected List<Byte[]> arrayTemplate = new List<byte[]>();
+        protected List<Byte[]> arrayTemplate = new List<byte[]>();
+
+        string plain, hash;
+        byte[] temp;
+
+        SHA1 sha = null;
+        StringBuilder sb = null;
+        Bitmap bmp1;
+
         public RegisterUser()
         {
             InitializeComponent();
         }
 
-
-        protected  void Init()
+        protected void Init()
         {
             try
             {
                 Capturer = new DPFP.Capture.Capture();				// Create a capture operation.
-                	
+
                 if (null != Capturer)
                     Capturer.EventHandler = this;					// Subscribe for capturing events.
                 else
@@ -47,13 +54,10 @@ namespace demoDigitalPersona
                 MessageBox.Show("Can't initiate capture operation!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void obtenerHUella_Load(object sender, EventArgs e)
-        {
-        
-        }
+
         private void load_all()
         {
-            
+
             Init();
             Enroller = new DPFP.Processing.Enrollment();			// Create an enrollment.
             UpdateStatus();
@@ -92,7 +96,7 @@ namespace demoDigitalPersona
                 // Check quality of the sample and add to enroller if it's good
                 if (features != null) try
                     {
-                       // MakeReport("The fingerprint feature set was created.");
+                        // MakeReport("The fingerprint feature set was created.");
                         Enroller.AddFeatures(features);		// Add feature set to template.
                     }
                     finally
@@ -119,7 +123,7 @@ namespace demoDigitalPersona
             }
             catch (Exception e)
             {
-                MessageBox.Show( e.Message,"Las huellas no coinciden");
+                MessageBox.Show(e.Message, "Las huellas no coinciden");
             }
         }
         protected void Start()
@@ -159,7 +163,7 @@ namespace demoDigitalPersona
                 //Prompt.Text = prompt;
             }));
         }
-     
+
         protected DPFP.FeatureSet ExtractFeatures(DPFP.Sample Sample, DPFP.Processing.DataPurpose Purpose)
         {
             DPFP.Processing.FeatureExtraction Extractor = new DPFP.Processing.FeatureExtraction();	// Create a feature extractor
@@ -189,7 +193,7 @@ namespace demoDigitalPersona
         {
             this.Invoke(new Function(delegate()
             {
-                MessageBox.Show(message,"REGISTRO",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show(message, "REGISTRO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }));
         }
 
@@ -214,7 +218,7 @@ namespace demoDigitalPersona
                 if (value == false)
                     button3.BackColor = Color.Black;
                 else
-                     button3.BackColor = Color.Green;
+                    button3.BackColor = Color.Green;
                 button3.Enabled = value;
             }));
         }
@@ -243,48 +247,48 @@ namespace demoDigitalPersona
                     Enabled_ButtonOne(false);
                     Enabled_ButtonTwo(false);
                 }
-                
+
             }
 
         }
         protected virtual void registerUser()
         {
             ClassConnectDataBase crud = new ClassConnectDataBase();
-            string result=  crud.insert(txt_name.Text, txt_lastname.Text,txt_nickname.Text,  txt_height.Text,"",
-               "",textBox1.Text, txt_date.Text,nameCode ,arrayTemplate[0], arrayTemplate[1]);
+            string result = crud.insert(txt_name.Text, txt_lastname.Text, txt_club.Text,txt_carnet.Text +" " + combo_carnet.Text,txt_phono.Text ,"", "",
+               "",txt_position.Text, txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1]);
             SetStatus("REGISTRO REALIZADO CORRECTAMENTE");
             Message(result);
         }
 
         public void OnFingerGone(object Capture, string ReaderSerialNumber)
         {
-           
+
         }
 
         public void OnFingerTouch(object Capture, string ReaderSerialNumber)
         {
-            
+
         }
 
         public void OnReaderConnect(object Capture, string ReaderSerialNumber)
         {
-           // MakeReport("The fingerprint reader was connected.");
+            // MakeReport("The fingerprint reader was connected.");
         }
 
         public void OnReaderDisconnect(object Capture, string ReaderSerialNumber)
         {
-            
+
         }
 
         public void OnSampleQuality(object Capture, string ReaderSerialNumber, DPFP.Capture.CaptureFeedback CaptureFeedback)
         {
-        
+
         }
         #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
             string patch1 = "";
             pictureBox1.Image = searchPhoto(ref patch1);
             textBox2.Text = patch1;
@@ -304,11 +308,6 @@ namespace demoDigitalPersona
 
 
         }
-        string plain, hash;
-        byte[] temp;
-
-        SHA1 sha = null;
-        StringBuilder sb = null;
 
         private string hashCode(string fullname)
         {
@@ -330,7 +329,7 @@ namespace demoDigitalPersona
             hash = sb.ToString();
             return hash;
         }
-       public string nameCode;
+        public string nameCode;
         private void button1_Click_1(object sender, EventArgs e)
         {
             string patch1 = "";
@@ -344,8 +343,6 @@ namespace demoDigitalPersona
 
 
         }
-
-        Bitmap bmp1;
 
         private void VaryQualityLevel(string imagePath, string name)
         {
@@ -362,7 +359,7 @@ namespace demoDigitalPersona
 
             EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 50L);
             myEncoderParameters.Param[0] = myEncoderParameter;
-            bmp1.Save(Application.StartupPath + "\\Images\\sm_" + name , jgpEncoder, myEncoderParameters);
+            bmp1.Save(Application.StartupPath + "\\Images\\sm_" + name, jgpEncoder, myEncoderParameters);
 
 
             bmp1.Dispose();
@@ -398,7 +395,19 @@ namespace demoDigitalPersona
             load_all();
         }
 
-      
+        private void RegisterUser_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            arrayTemplate = new List<byte[]>();
+            arrayTemplate.Add(null);
+            arrayTemplate.Add(null);
+            registerUser();
+        }
+
     }
 
 }
