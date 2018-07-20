@@ -23,9 +23,13 @@ namespace demoDigitalPersona
         MySqlTransaction myTrans;
         public ClassConnectDataBase()
         {
-            string aux = "server=sidbol.com;database=sidbol_db;uid=sidbol;pwd=1G3!Nx}$!W]f;";
-
+            string aux ="server="+ ConstactsCreadentials.serverName +
+                        ";database=" + ConstactsCreadentials.database + 
+                        ";uid=" + ConstactsCreadentials.userName + 
+                        ";pwd=" + ConstactsCreadentials.pass +
+                        ";";
             myConnection = new MySqlConnection(aux);
+
         }
         /// <summary>
         /// Begin the transaction services
@@ -133,7 +137,7 @@ namespace demoDigitalPersona
                 cmd.Parameters["@fingerOne"].Value = fingerOne;
                 cmd.Parameters["@fingerTwo"].Value = fingerTwo;
                 cmd.ExecuteNonQuery();
-                ftp ftpClient = new ftp(@"ftp://sidbol.com", "sidbol", "1G3!Nx}$!W]f");
+                ftp ftpClient = new ftp(@"ftp://sidbol.com", ConstactsCreadentials.userName, ConstactsCreadentials.pass);
 
                 /* Upload a File */
                 ftpClient.upload("public_html/afc/app/webroot/img/players/sm_" + patchphoto + ".jpg", Application.StartupPath + "\\Images\\sm_" + patchphoto + ".jpg");
@@ -202,7 +206,7 @@ namespace demoDigitalPersona
                 cmd.Parameters["@fingerTwo"].Value = fingerTwo;
                 cmd.ExecuteNonQuery();
                 /* Create Object Instance */
-                ftp ftpClient = new ftp(@"ftp://sidbol.com", "sidbol", "1G3!Nx}$!W]f");
+                ftp ftpClient = new ftp(@"ftp://sidbol.com", ConstactsCreadentials.userName, ConstactsCreadentials.pass);
 
                 /* Upload a File */
                 ftpClient.upload("public_html/afc/app/webroot/img/players/sm_" + patchphoto +".jpg", Application.StartupPath + "\\Images\\sm_"+ patchphoto+".jpg");

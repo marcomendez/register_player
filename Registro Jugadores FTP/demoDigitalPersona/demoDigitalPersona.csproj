@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassConnectDataBase.cs" />
+    <Compile Include="ConstactsCreadentials.cs" />
     <Compile Include="ftp.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>

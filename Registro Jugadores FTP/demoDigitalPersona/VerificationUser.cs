@@ -261,7 +261,7 @@ namespace demoDigitalPersona
                 birthday = table.Rows[0]["birthday"].ToString();
 
 
-                ftp ftpClient = new ftp(@"ftp://sidbol.com", "sidbol", "1G3!Nx}$!W]f");
+                ftp ftpClient = new ftp(@"ftp://sidbol.com", ConstactsCreadentials.userName, ConstactsCreadentials.pass);
 
                 /* Upload a File */
                 ftpClient.download("public_html/afc/app/webroot/img/players/sm_" + table.Rows[0]["image"].ToString() + ".jpg", Application.StartupPath + "\\Images\\sm_" + table.Rows[0]["image"].ToString() + ".jpg");
