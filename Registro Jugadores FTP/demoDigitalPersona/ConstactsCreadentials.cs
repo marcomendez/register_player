@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace demoDigitalPersona
 {
-    public static class ConstactsCreadentials
+    public class ConstactsCreadentials
     {
 
         public static string serverName = String.Empty;
@@ -14,6 +14,5 @@ namespace demoDigitalPersona
 
         public static string userName = String.Empty;
         public static string pass = String.Empty;
-
     }
 }
