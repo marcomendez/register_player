@@ -95,7 +95,7 @@ namespace demoDigitalPersona
         /// <param name="name"></param>
         /// <param name="finger"></param>
         /// <param name="photo"></param>
-        internal string update(int id, string name, string lastname, string nickname,string ci, string phono, string height, string weight, string skillful, string position, string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo)
+        public string update(int id, string name, string lastname, string nickname,string ci, string phono, string height, string weight, string skillful, string position, string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo)
         {
             try
             {
