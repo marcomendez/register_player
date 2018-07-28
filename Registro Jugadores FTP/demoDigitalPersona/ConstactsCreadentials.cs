@@ -9,10 +9,7 @@ namespace demoDigitalPersona
     public class ConstactsCreadentials
     {
 
-        public static string serverName = String.Empty;
-        public static string database = String.Empty;
 
-        public static string userName = String.Empty;
-        public static string pass = String.Empty;
+
     }
 }

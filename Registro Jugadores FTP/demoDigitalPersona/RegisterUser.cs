@@ -255,7 +255,8 @@ namespace demoDigitalPersona
         {
             ClassConnectDataBase crud = new ClassConnectDataBase();
             string result = crud.insert(txt_name.Text, txt_lastname.Text, txt_club.Text,txt_carnet.Text +" " + combo_carnet.Text,txt_phono.Text ,"", "",
-               "",txt_position.Text, txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1]);
+               "",txt_position.Text, txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1],
+               combo_division.SelectedValue.ToString(), combo_team.SelectedValue.ToString());
             SetStatus("REGISTRO REALIZADO CORRECTAMENTE");
             Message(result);
         }
@@ -397,8 +398,17 @@ namespace demoDigitalPersona
 
         private void RegisterUser_Load(object sender, EventArgs e)
         {
+            ClassConnectDataBase db = new ClassConnectDataBase();
+            combo_division.DataSource = db.getDivision();
+            combo_division.DisplayMember = "name";
+            combo_division.ValueMember = "id";
 
+            combo_team.DataSource = db.getTeam();
+            combo_team.DisplayMember = "name";
+            combo_team.ValueMember = "id";
         }
+
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -406,6 +416,37 @@ namespace demoDigitalPersona
             arrayTemplate.Add(null);
             arrayTemplate.Add(null);
             registerUser();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                ClassConnectDataBase db = new ClassConnectDataBase();
+                DataTable tabla = db.getDivisionTeamsID(combo_division.SelectedValue.ToString(), combo_team.SelectedValue.ToString());
+                string iddivison = tabla.Rows[0]["id"].ToString();
+                MessageBox.Show(iddivison);
+
+
+                tabla = db.getChampionsId(combo_division.SelectedValue.ToString());
+                string idchampion = tabla.Rows[0]["championship_id"].ToString();
+                MessageBox.Show(idchampion);
+
+
+                db.insertDivisionTeamsPLayers("5334",iddivison,idchampion);
+
+            }
+            catch
+            {
+                MessageBox.Show("El Equipo Seleccionado no tiene la Division Seleccionada", "AFC Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
     }

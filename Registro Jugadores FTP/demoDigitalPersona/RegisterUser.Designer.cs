@@ -56,6 +56,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txt_phono = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.combo_division = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.combo_team = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -68,7 +73,7 @@
             this.StatusLine.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.StatusLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.StatusLine.Font = new System.Drawing.Font("Arial Narrow", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLine.Location = new System.Drawing.Point(384, 350);
+            this.StatusLine.Location = new System.Drawing.Point(384, 374);
             this.StatusLine.Name = "StatusLine";
             this.StatusLine.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StatusLine.Size = new System.Drawing.Size(515, 39);
@@ -81,7 +86,7 @@
             this.Picture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Picture.BackColor = System.Drawing.SystemColors.Window;
             this.Picture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Picture.Location = new System.Drawing.Point(15, 22);
+            this.Picture.Location = new System.Drawing.Point(15, 37);
             this.Picture.Name = "Picture";
             this.Picture.Size = new System.Drawing.Size(223, 248);
             this.Picture.TabIndex = 7;
@@ -91,7 +96,7 @@
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(384, 318);
+            this.textBox2.Location = new System.Drawing.Point(384, 348);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(259, 20);
             this.textBox2.TabIndex = 23;
@@ -101,7 +106,7 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(587, 288);
+            this.button1.Location = new System.Drawing.Point(589, 317);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(54, 22);
             this.button1.TabIndex = 8;
@@ -118,7 +123,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(384, 62);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(259, 250);
+            this.pictureBox1.Size = new System.Drawing.Size(259, 280);
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
@@ -130,7 +135,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(649, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 276);
+            this.groupBox1.Size = new System.Drawing.Size(250, 306);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "HUELLA DIGITAL";
@@ -142,7 +147,7 @@
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(79, 350);
+            this.button2.Location = new System.Drawing.Point(85, 422);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(141, 39);
             this.button2.TabIndex = 9;
@@ -158,7 +163,7 @@
             this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(226, 350);
+            this.button3.Location = new System.Drawing.Point(232, 422);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(141, 39);
             this.button3.TabIndex = 10;
@@ -200,9 +205,9 @@
             this.txt_date.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txt_date.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
             this.txt_date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txt_date.Location = new System.Drawing.Point(114, 310);
+            this.txt_date.Location = new System.Drawing.Point(108, 310);
             this.txt_date.Name = "txt_date";
-            this.txt_date.Size = new System.Drawing.Size(247, 29);
+            this.txt_date.Size = new System.Drawing.Size(259, 29);
             this.txt_date.TabIndex = 73;
             // 
             // label_weight
@@ -210,7 +215,7 @@
             this.label_weight.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label_weight.AutoSize = true;
             this.label_weight.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_weight.Location = new System.Drawing.Point(7, 315);
+            this.label_weight.Location = new System.Drawing.Point(1, 315);
             this.label_weight.Name = "label_weight";
             this.label_weight.Size = new System.Drawing.Size(107, 23);
             this.label_weight.TabIndex = 72;
@@ -378,21 +383,83 @@
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(373, 350);
+            this.button4.Location = new System.Drawing.Point(404, 425);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(141, 39);
             this.button4.TabIndex = 80;
             this.button4.Text = "save";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // combo_division
+            // 
+            this.combo_division.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.combo_division.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.combo_division.FormattingEnabled = true;
+            this.combo_division.Location = new System.Drawing.Point(108, 345);
+            this.combo_division.Name = "combo_division";
+            this.combo_division.Size = new System.Drawing.Size(259, 31);
+            this.combo_division.TabIndex = 81;
+            this.combo_division.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(26, 348);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(76, 23);
+            this.label7.TabIndex = 82;
+            this.label7.Text = "DIVISION";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(26, 385);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 23);
+            this.label8.TabIndex = 84;
+            this.label8.Text = "EQUIPO";
+            // 
+            // combo_team
+            // 
+            this.combo_team.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.combo_team.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.combo_team.FormattingEnabled = true;
+            this.combo_team.Location = new System.Drawing.Point(108, 382);
+            this.combo_team.Name = "combo_team";
+            this.combo_team.Size = new System.Drawing.Size(259, 31);
+            this.combo_team.TabIndex = 83;
+            // 
+            // button5
+            // 
+            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button5.BackColor = System.Drawing.Color.Green;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(569, 425);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(141, 39);
+            this.button5.TabIndex = 85;
+            this.button5.Text = "save";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // RegisterUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(918, 404);
+            this.ClientSize = new System.Drawing.Size(918, 484);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.combo_team);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.combo_division);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txt_phono);
@@ -464,5 +531,10 @@
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox txt_phono;
         public System.Windows.Forms.Button button4;
+        public System.Windows.Forms.ComboBox combo_division;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.ComboBox combo_team;
+        public System.Windows.Forms.Button button5;
     }
 }

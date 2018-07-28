@@ -169,7 +169,9 @@ namespace demoDigitalPersona
         /// <param name="fingerOne"></param>
         /// <param name="fingerTwo"></param>
         /// <returns></returns>
-        public string insert(string name, string lastname, string nickname,string ci, string phono, string height, string weight, string skillful, string position, string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo)
+        public string insert(string name, string lastname, string nickname,string ci,
+            string phono, string height, string weight, string skillful, string position,
+            string birthday, string patchphoto, byte[] fingerOne, byte[] fingerTwo, string idDivision, string idteam)
         {
             try
             {
@@ -205,12 +207,29 @@ namespace demoDigitalPersona
                 cmd.Parameters["@fingerOne"].Value = fingerOne;
                 cmd.Parameters["@fingerTwo"].Value = fingerTwo;
                 cmd.ExecuteNonQuery();
+                int idPlayer = Convert.ToInt32( cmd.LastInsertedId);
+
+
+
+
                 /* Create Object Instance */
                 ftp ftpClient = new ftp(@"ftp://sidbol.com", ConstactsCreadentials.userName, ConstactsCreadentials.pass);
 
                 /* Upload a File */
                 ftpClient.upload("public_html/afc/app/webroot/img/players/sm_" + patchphoto +".jpg", Application.StartupPath + "\\Images\\sm_"+ patchphoto+".jpg");
                 myTrans.Commit();
+
+
+
+                DataTable tabla = this.getDivisionTeamsID(idDivision, idteam);
+                string idDivisionQuery = tabla.Rows[0]["id"].ToString();
+
+
+                tabla = this.getChampionsId(idDivision);
+                string idchampionShip = tabla.Rows[0]["championship_id"].ToString();
+
+                insertDivisionTeamsPLayers(idPlayer.ToString(), idDivisionQuery, idchampionShip);
+
 
             }
             catch (Exception e)
@@ -227,10 +246,6 @@ namespace demoDigitalPersona
             return "*************** JUGADOR REGISTRADO CORRECTAMENTE ********************";
         }
  
-
-
-
-      
         public DataTable search_Users()
         {
             MySqlCommand command;
@@ -300,8 +315,108 @@ namespace demoDigitalPersona
 
             }
             return "*********************** User Deleted ***************************";
+        }
+
+        public DataTable getDivision()
+        {
+            MySqlCommand command;
+            MySqlDataAdapter da;
+            string query = String.Format("select *from divisions");
+            command = new MySqlCommand(query, myConnection);
+            da = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            da.Dispose();
+            myConnection.Close();
+            return table;
+        }
+
+        public DataTable getTeam()
+        {
+            MySqlCommand command;
+            MySqlDataAdapter da;
+            string query = String.Format("select *from teams");
+            command = new MySqlCommand(query, myConnection);
+            da = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            da.Dispose();
+            myConnection.Close();
+            return table;
+        }
 
 
+        public DataTable getDivisionTeamsID(string idDivision, string idTeam)
+        {
+
+            MySqlCommand command;
+            MySqlDataAdapter da;
+            string query = String.Format("select *from divisions_teams where division_id ={0} and team_id = {1}", idDivision, idTeam);
+            command = new MySqlCommand(query, myConnection);
+            da = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            da.Dispose();
+            myConnection.Close();
+            return table;
+            
+        }
+
+        public DataTable getChampionsId(string idDivision)
+        {
+
+            MySqlCommand command;
+            MySqlDataAdapter da;
+            string query = String.Format("select *from divisions where id = {0}", idDivision);
+            command = new MySqlCommand(query, myConnection);
+            da = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            da.Dispose();
+            myConnection.Close();
+            return table;
+
+        }
+
+
+
+
+        public string insertDivisionTeamsPLayers(string idplayer,string idDivisin, string idChampion)
+        {
+            try
+            {
+                beginTransaction();
+
+                MySqlCommand cmd;
+                string cmdString = "INSERT INTO divisions_teams_players(player_id,divisions_team_id,championship_id)values(@idplayer,@iddivision,@idchampion)";
+                cmd = new MySqlCommand(cmdString, myConnection);
+                cmd.Parameters.Add("@idplayer", MySqlDbType.Int16);
+                cmd.Parameters.Add("@iddivision", MySqlDbType.Int16);
+                cmd.Parameters.Add("@idchampion", MySqlDbType.Int16);
+                cmd.Parameters["@idplayer"].Value = idplayer;
+                cmd.Parameters["@iddivision"].Value = idDivisin;
+                cmd.Parameters["@idchampion"].Value = idChampion;
+     
+                cmd.ExecuteNonQuery();
+                myTrans.Commit();
+            }
+            catch (Exception e)
+            {
+                myTrans.Rollback();
+                return e.Message + "*************** Ha ocurrido un error , porfavor contacte con SIDBOL ********************";
+
+            }
+            finally
+            {
+                myConnection.Close();
+
+            }
+
+            return "OK";
         }
     }
 }
