@@ -152,7 +152,7 @@ namespace demoDigitalPersona
             {
                 myConnection.Close();
             }
-            return "***************** DATOS DEL JUGADOR ACTUALIZADO CORRECTAMENTE ***********************";
+            return "***** DATOS DEL JUGADOR ACTUALIZADO CORRECTAMENTE *****";
         }
         /// <summary>
         /// this method do an insert to register user
@@ -243,7 +243,7 @@ namespace demoDigitalPersona
                 myConnection.Close();
 
             }
-            return "*************** JUGADOR REGISTRADO CORRECTAMENTE ********************";
+            return "***** JUGADOR REGISTRADO CORRECTAMENTE *****";
         }
  
         public DataTable search_Users()

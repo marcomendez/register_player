@@ -27,9 +27,9 @@ namespace demoDigitalPersona
             Byte[] bytes = br.ReadBytes((Int32)fingerdata.Length);
             ClassConnectDataBase c = new ClassConnectDataBase();
 
-            string result = c.update(int.Parse(textBox3.Text), txt_name.Text, txt_lastname.Text, txt_club.Text,txt_carnet.Text +" "+combo_carnet.Text,txt_phono.Text,"", "",
-                "", "mierdaaa", txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1]);
-            SetStatus("Correctly registered user");
+            string result = c.update(int.Parse(textBox3.Text), txt_name.Text, txt_lastname.Text, teamName, txt_carnet.Text + " " + ciudadaCarnet, txt_phono.Text, "", "",
+                "", positionName, txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1]);
+            SetStatus("Datos Actualizados Correctamente");
             Message(result);
         }
         private void UpdataUser_Load(object sender, EventArgs e)
@@ -52,10 +52,10 @@ namespace demoDigitalPersona
                 textBox3.Text = search.id;
                 txt_name.Text = search.name;
                 txt_lastname.Text = search.lastname;
-                txt_club.Text = search.nickname;
+                combo_team.Text = search.nickname;
 
                 txt_carnet.Text = search.height;
-    
+
                 txt_position.Text = search.position;
                 txt_date.Text = search.birthday;
             }
@@ -68,9 +68,42 @@ namespace demoDigitalPersona
         private void button5_Click(object sender, EventArgs e)
         {
             ClassConnectDataBase delete = new ClassConnectDataBase();
-            MessageBox.Show(delete.delete_user(textBox3.Text),"Eleminar Jugador");
+            MessageBox.Show(delete.delete_user(textBox3.Text), "Eleminar Jugador");
 
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Search_Users search = new Search_Users();
+                search.ShowDialog();
+                textBox3.Text = search.id;
+                txt_name.Text = search.name;
+                txt_lastname.Text = search.lastname;
+                combo_team.Text = search.nickname;
+
+                combo_division.Text = search.height;
+
+                txt_position.Text = search.position;
+                txt_date.Text = search.birthday;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Esta Seguro que Quiere Eliminar a este Jugador ", "AFC - ELIMINAR JUGADOR", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                ClassConnectDataBase delete = new ClassConnectDataBase();
+                MessageBox.Show(delete.delete_user(textBox3.Text), "AFC - JUGADOR ELIMINADO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

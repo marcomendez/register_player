@@ -9,7 +9,10 @@ namespace demoDigitalPersona
     public class ConstactsCreadentials
     {
 
+        public static string serverName = "";
+        public static string database = "";
 
-
+        public static string userName = "";
+        public static string pass = "";
     }
 }

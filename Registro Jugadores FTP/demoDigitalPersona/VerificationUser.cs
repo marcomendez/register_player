@@ -18,13 +18,16 @@ namespace demoDigitalPersona
             InitializeComponent();
         }
         #region globalVariables
-        string name = "", last_name = "", nickname = "", height = "", weight = "", skillful_leg = "", position = "", birthday = "";
+        string name = string.Empty, last_name = string.Empty,
+            nickname = string.Empty, height = string.Empty,
+            weight = string.Empty, skillful_leg = string.Empty,
+            position = string.Empty, birthday = string.Empty,
+            ci = string.Empty;
 
         private DPFP.Capture.Capture Capturer;
         private Dictionary<string, DPFP.Template[]> ListTemplate = new Dictionary<string, DPFP.Template[]>();
         private DPFP.Verification.Verification Verificator;
         #endregion
-
 
 
         private void Verification_FormClosed(object sender, FormClosedEventArgs e)
@@ -123,7 +126,7 @@ namespace demoDigitalPersona
                 //Prompt.Text = prompt;
             }));
         }
-        protected void UserName(string name, string last_name, string nickname, string height, string weight, string skillful_leg, string position, string birthday)
+        protected void UserName(string name, string last_name, string nickname, string ci, string height, string weight, string skillful_leg, string position, string birthday)
         {
             this.Invoke(new Function(delegate()
             {
@@ -131,8 +134,9 @@ namespace demoDigitalPersona
                 {
                     txt_name.Text = name;
                     txt_lastname.Text = last_name;
-                    txt_nickname.Text = nickname;
-                    txt_height.Text = height;
+                    txt_club.Text = nickname;
+                    txt_carnet.Text = height;
+                    txt_carnet.Text = ci;
 
                     txt_position.Text = position;
 
@@ -196,57 +200,48 @@ namespace demoDigitalPersona
         protected void Process(DPFP.Sample Sample)
         {
             baseProcess(Sample);
-            while (ListTemplate.Count != 0)
+
+
+            foreach (string keysTemplate in ListTemplate.Keys)
             {
-
-
-                foreach (string keysTemplate in ListTemplate.Keys)
+                Verificator = new DPFP.Verification.Verification();
+                DPFP.FeatureSet features = ExtractFeatures(Sample, DPFP.Processing.DataPurpose.Verification);
+                if (features != null)
                 {
-                    Verificator = new DPFP.Verification.Verification();
-                    DPFP.FeatureSet features = ExtractFeatures(Sample, DPFP.Processing.DataPurpose.Verification);
-                    if (features != null)
+                    DPFP.Verification.Verification.Result result = new DPFP.Verification.Verification.Result();
+                    DPFP.Template[] arrayTemplate = ListTemplate[keysTemplate];
+                    Verificator.Verify(features, arrayTemplate[0], ref result);
+                    UpdateStatus(result.FARAchieved);
+                    if (result.Verified)
                     {
-                        DPFP.Verification.Verification.Result result = new DPFP.Verification.Verification.Result();
-                        DPFP.Template[] arrayTemplate = ListTemplate[keysTemplate];
-                        Verificator.Verify(features, arrayTemplate[0], ref result);
-                        UpdateStatus(result.FARAchieved);
-                        if (result.Verified)
-                        {
-                            getUerData(keysTemplate);
+                        getUerData(keysTemplate);
 
-                            return;
-                        }
-                        Verificator.Verify(features, arrayTemplate[1], ref result);
-                        UpdateStatus(result.FARAchieved);
-                        if (result.Verified)
-                        {
-                            getUerData(keysTemplate);
+                        return;
+                    }
+                    Verificator.Verify(features, arrayTemplate[1], ref result);
+                    UpdateStatus(result.FARAchieved);
+                    if (result.Verified)
+                    {
+                        getUerData(keysTemplate);
 
-                            return;
-                        }
-
+                        return;
                     }
 
                 }
-                searchWithoutName();
 
             }
-            if (ListTemplate.Count == 0)
-            {
-                MakeReport("la Huella  no existe");
-                Message("Jugador no encontrado en : " + (start).ToString() + " : " + ListTemplate.Count.ToString());
-                UserName(" ", " ", " ", " ", " ", " ", " ", " ");
-                btn();
-            }
 
-
+            MakeReport("Jugador no Encontrado en la Base de Datos de AFC ");
+            Message("Jugador no Encontrado en la Base de Datos de AFC ");
+            UserName(" ", " ", " ", "", " ", " ", " ", " ", " ");
+            btn();
 
         }
         private void getUerData(string keysTemplate)
         {
             try
             {
-                MakeReport("la Huella existe");
+                MakeReport("Jugador no Encontrado en la Base de Datos de AFC ");
                 ClassConnectDataBase classBiometric = new ClassConnectDataBase();
                 DataTable table = classBiometric.getDatawithTwoFinger(keysTemplate);
 
@@ -254,6 +249,7 @@ namespace demoDigitalPersona
                 name = table.Rows[0]["Name"].ToString();
                 last_name = table.Rows[0]["last_name"].ToString();
                 nickname = table.Rows[0]["nickname"].ToString();
+                ci = table.Rows[0]["ci"].ToString();
                 height = table.Rows[0]["height"].ToString();
                 weight = table.Rows[0]["weight"].ToString();
                 skillful_leg = table.Rows[0]["skillful_leg"].ToString();
@@ -269,7 +265,7 @@ namespace demoDigitalPersona
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\Images\\sm_" + table.Rows[0]["image"].ToString() + ".jpg");
 
-                UserName(name, last_name, nickname, height, weight, skillful_leg, position, birthday);
+                UserName(name, last_name, nickname, ci, height, weight, skillful_leg, position, birthday);
                 btn();
 
             }
@@ -301,11 +297,6 @@ namespace demoDigitalPersona
                 // StatusLine.Text = status;
             }));
         }
-
-
-
-
-
 
         #endregion
 
@@ -400,32 +391,13 @@ namespace demoDigitalPersona
                     }
 
                 }
+                button1.Text = "Buscando...";
 
             }
             catch
             {
-                MessageBox.Show("ERROR", "cargado jugadores");
-            }
-        }
-
-        public void searchWithoutName()
-        {
-            int end = start + 100;
-
-            DataTable table = search.search_UsersWITHRANDON(start, end);
-            start = end;
-            ListTemplate.Clear();
-            int i = table.Rows.Count;
-            for (int items = 0; items < i; items++)
-            {
-
-                byte[] fingerBufferOne = (byte[])table.Rows[items]["fingerOne"];
-                byte[] fingerBufferTwo = (byte[])table.Rows[items]["fingerTwo"];
-                DPFP.Template[] arrayTemplate = new DPFP.Template[2];
-                arrayTemplate[0] = getTemplate(fingerBufferOne);
-                arrayTemplate[1] = getTemplate(fingerBufferTwo);
-                ListTemplate.Add(table.Rows[items]["Id"].ToString(), arrayTemplate);
-
+                button1.Text = "Buscar por Nombre";
+                MessageBox.Show("ERROR", "Cargando jugadores");
             }
         }
 
@@ -434,10 +406,8 @@ namespace demoDigitalPersona
         {
             try
             {
-
-                searchWithoutName();
                 start = 0;
-                button2.Text = "buscando";
+                button2.Text = "buscando...";
             }
             catch
             {
@@ -463,7 +433,7 @@ namespace demoDigitalPersona
                 ListTemplate.Add(table.Rows[items]["Id"].ToString(), arrayTemplate);
 
             }
-            button3.Text = "buscando";
+            button3.Text = "Buscando...";
 
         }
 

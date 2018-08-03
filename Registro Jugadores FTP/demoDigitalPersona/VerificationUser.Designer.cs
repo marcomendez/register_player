@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerificationUser));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_date = new System.Windows.Forms.DateTimePicker();
             this.label_weight = new System.Windows.Forms.Label();
             this.lalas44 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_height = new System.Windows.Forms.TextBox();
+            this.txt_carnet = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_nickname = new System.Windows.Forms.TextBox();
+            this.txt_club = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_lastname = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -101,47 +101,47 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 236);
+            this.label4.Location = new System.Drawing.Point(21, 236);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 23);
+            this.label4.Size = new System.Drawing.Size(74, 23);
             this.label4.TabIndex = 52;
-            this.label4.Text = "ESTATURA";
+            this.label4.Text = "CARNET";
             // 
-            // txt_height
+            // txt_carnet
             // 
-            this.txt_height.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txt_height.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_height.Location = new System.Drawing.Point(101, 236);
-            this.txt_height.Name = "txt_height";
-            this.txt_height.Size = new System.Drawing.Size(259, 29);
-            this.txt_height.TabIndex = 51;
+            this.txt_carnet.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txt_carnet.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_carnet.Location = new System.Drawing.Point(101, 236);
+            this.txt_carnet.Name = "txt_carnet";
+            this.txt_carnet.Size = new System.Drawing.Size(259, 29);
+            this.txt_carnet.TabIndex = 51;
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(29, 187);
+            this.label3.Location = new System.Drawing.Point(44, 187);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 23);
+            this.label3.Size = new System.Drawing.Size(53, 23);
             this.label3.TabIndex = 50;
-            this.label3.Text = "APODO";
+            this.label3.Text = "CLUB";
             // 
-            // txt_nickname
+            // txt_club
             // 
-            this.txt_nickname.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txt_nickname.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nickname.Location = new System.Drawing.Point(101, 187);
-            this.txt_nickname.Name = "txt_nickname";
-            this.txt_nickname.Size = new System.Drawing.Size(259, 29);
-            this.txt_nickname.TabIndex = 49;
+            this.txt_club.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txt_club.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_club.Location = new System.Drawing.Point(101, 187);
+            this.txt_club.Name = "txt_club";
+            this.txt_club.Size = new System.Drawing.Size(259, 29);
+            this.txt_club.TabIndex = 49;
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 138);
+            this.label2.Location = new System.Drawing.Point(9, 138);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 23);
             this.label2.TabIndex = 48;
@@ -161,7 +161,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 89);
+            this.label1.Location = new System.Drawing.Point(19, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 23);
             this.label1.TabIndex = 46;
@@ -224,7 +224,7 @@
             this.StatusLine.Name = "StatusLine";
             this.StatusLine.Size = new System.Drawing.Size(893, 39);
             this.StatusLine.TabIndex = 61;
-            this.StatusLine.Text = "VERIFICACION DE JUGADOR";
+            this.StatusLine.Text = "VERIFICACION DE JUGADORES";
             this.StatusLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txt_position
@@ -245,6 +245,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(571, 382);
             this.button1.Name = "button1";
@@ -281,25 +282,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NOMBRE});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(222, 421);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -378,9 +379,9 @@
             this.Controls.Add(this.label_weight);
             this.Controls.Add(this.lalas44);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txt_height);
+            this.Controls.Add(this.txt_carnet);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_nickname);
+            this.Controls.Add(this.txt_club);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_lastname);
             this.Controls.Add(this.label1);
@@ -410,9 +411,9 @@
         public System.Windows.Forms.Label label_weight;
         public System.Windows.Forms.Label lalas44;
         public System.Windows.Forms.Label label4;
-        public System.Windows.Forms.TextBox txt_height;
+        public System.Windows.Forms.TextBox txt_carnet;
         public System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox txt_nickname;
+        public System.Windows.Forms.TextBox txt_club;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox txt_lastname;
         public System.Windows.Forms.Label label1;

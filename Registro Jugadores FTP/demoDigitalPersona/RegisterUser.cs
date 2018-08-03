@@ -33,6 +33,13 @@ namespace demoDigitalPersona
         StringBuilder sb = null;
         Bitmap bmp1;
 
+        public string teamName = String.Empty;
+        public string idteam = String.Empty;
+        public string iddivision = String.Empty;
+        public string nameCode = String.Empty;
+        public string positionName = String.Empty;
+        public string ciudadaCarnet = String.Empty;
+
         public RegisterUser()
         {
             InitializeComponent();
@@ -62,7 +69,7 @@ namespace demoDigitalPersona
             Enroller = new DPFP.Processing.Enrollment();			// Create an enrollment.
             UpdateStatus();
             Start();
-            bandera = "";
+            bandera = String.Empty;
         }
         private void DrawPicture(Bitmap bitmap)
         {
@@ -178,7 +185,7 @@ namespace demoDigitalPersona
         private void UpdateStatus()
         {
             // Show number of samples needed.
-            SetStatus(String.Format("Fingerprint samples needed: {0}", Enroller.FeaturesNeeded));
+            SetStatus(String.Format("Se requieren muestra de huella digital: {0}", Enroller.FeaturesNeeded));
         }
 
         protected void SetStatus(string status)
@@ -193,7 +200,7 @@ namespace demoDigitalPersona
         {
             this.Invoke(new Function(delegate()
             {
-                MessageBox.Show(message, "REGISTRO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(message, "AFC - REGISTRO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }));
         }
 
@@ -251,14 +258,19 @@ namespace demoDigitalPersona
             }
 
         }
+
         protected virtual void registerUser()
         {
+
+
+            SetStatus("Registrando...");
             ClassConnectDataBase crud = new ClassConnectDataBase();
-            string result = crud.insert(txt_name.Text, txt_lastname.Text, txt_club.Text,txt_carnet.Text +" " + combo_carnet.Text,txt_phono.Text ,"", "",
-               "",txt_position.Text, txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1],
-               combo_division.SelectedValue.ToString(), combo_team.SelectedValue.ToString());
+            string result = crud.insert(txt_name.Text, txt_lastname.Text, teamName, txt_carnet.Text + " " + ciudadaCarnet, txt_phono.Text, "", "",
+               "", positionName, txt_date.Text, nameCode, arrayTemplate[0], arrayTemplate[1],
+               iddivision, idteam);
             SetStatus("REGISTRO REALIZADO CORRECTAMENTE");
             Message(result);
+
         }
 
         public void OnFingerGone(object Capture, string ReaderSerialNumber)
@@ -290,7 +302,7 @@ namespace demoDigitalPersona
         private void button1_Click(object sender, EventArgs e)
         {
 
-            string patch1 = "";
+            string patch1 = String.Empty;
             pictureBox1.Image = searchPhoto(ref patch1);
             textBox2.Text = patch1;
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -330,10 +342,10 @@ namespace demoDigitalPersona
             hash = sb.ToString();
             return hash;
         }
-        public string nameCode;
+        
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string patch1 = "";
+            string patch1 = String.Empty;
             pictureBox1.Image = searchPhoto(ref patch1);
             textBox2.Text = patch1;
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -420,9 +432,14 @@ namespace demoDigitalPersona
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            iddivision = combo_division.SelectedValue.ToString();
         }
 
+        /// <summary>
+        /// This is a examplo method.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
 
@@ -438,15 +455,32 @@ namespace demoDigitalPersona
                 string idchampion = tabla.Rows[0]["championship_id"].ToString();
                 MessageBox.Show(idchampion);
 
-
-                db.insertDivisionTeamsPLayers("5334",iddivison,idchampion);
+                // this is a examplo
+                db.insertDivisionTeamsPLayers("5334", iddivison, idchampion);
 
             }
             catch
             {
                 MessageBox.Show("El Equipo Seleccionado no tiene la Division Seleccionada", "AFC Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
+        }
+
+        private void combo_team_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            teamName = combo_team.Text;
+            idteam = combo_team.SelectedValue.ToString();
+        }
+       
+        private void combo_carnet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ciudadaCarnet = combo_carnet.Text;
+        }
+
+
+        private void txt_position_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            positionName = txt_position.Text;
         }
 
     }
