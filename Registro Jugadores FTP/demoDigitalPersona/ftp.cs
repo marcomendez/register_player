@@ -219,7 +219,7 @@ namespace demoDigitalPersona
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             /* Return an Empty string Array if an Exception Occurs */
-            return "";
+            return String.Empty;
         }
 
         /* Get the Size of a File */
@@ -258,7 +258,7 @@ namespace demoDigitalPersona
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             /* Return an Empty string Array if an Exception Occurs */
-            return "";
+            return String.Empty;
         }
 
         /* List Directory Contents File/Folder Name Only */
